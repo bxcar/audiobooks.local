@@ -18,7 +18,7 @@
         <?php if (has_post_thumbnail() && !post_password_required()) : ?>
             <?php if (is_single()) : ?>
                 <div class="entry-thumbnail">
-                    <?php the_post_thumbnail(); ?>
+                    <?php //the_post_thumbnail(); ?>
                 </div>
             <?php else : ?>
                 <a href="<?php the_permalink() ?>" style="/*position: relative;*/">
@@ -33,7 +33,8 @@
         <?php endif; ?>
 
         <?php if (is_single()) : ?>
-            <div class="playlist-single sm2-bar-ui playlist-open full-width" style="margin-top: 20px; max-width: 420px">
+            <div class="playlist-single sm2-bar-ui playlist-open full-width"
+                 style="margin-top: 20px; max-width: 420px; display: none;">
 
                 <div class="bd sm2-main-controls">
 
@@ -170,13 +171,43 @@
                 </div>
 
             </div>
+
+            <!--<div id="player332"></div>
+
+            <script>
+                var player = new Playerjs({id:"player332", file:"<? /*= get_field('audio_list')[0]['file']['url']; */ ?>"});
+            </script>-->
+
+        <div id="player332" class="player-pljs"></div>
+            <script>
+                var player = new Playerjs({
+                    id: "player332",
+                    file: [
+                        <?php foreach (get_field('audio_list') as $item) { ?>
+                        {"title": "<?= $item['file']['title'] ?>", "file": "<?= $item['file']['url'] ?>"},
+                        <?php } ?>
+                    ],
+                    poster: "<?= get_the_post_thumbnail_url(); ?>",
+                });
+            </script>
             <h1 class="entry-title bigger"><?php the_title(); ?></h1>
             <div class="entry-meta">
                 <?php writter_entry_meta(); ?>
                 <?php edit_post_link(__('Edit', 'writter'), '<span class="edit-link">', '</span>'); ?>
             </div><!-- .entry-meta -->
         <?php else : ?>
-            <div class="sm2-bar-ui compact full-width" style="position: absolute; top: 0; left: 0; width: 44px; margin-top: 0;">
+            <div id="player<?php the_ID(); ?><?=  $GLOBALS['ident'] ?>" class="player-pljs"></div>
+            <script>
+                var player = new Playerjs({
+                    id: "player<?php the_ID(); ?><?= $GLOBALS['ident'] ?>",
+                    file: [
+                        {"title": "<?= get_field('audio_list')[0]['file']['title']; ?>", "file": "<?= get_field('audio_list')[0]['file']['url']; ?>"},
+                    ],
+                    poster: "<?= get_the_post_thumbnail_url(); ?>",
+                });
+            </script>
+            <div class="sm2-bar-ui compact full-width"
+                 style="position: absolute; top: 0; left: 0; width: 44px; margin-top: 0; display: none;">
 
                 <div class="bd sm2-main-controls">
 
@@ -254,7 +285,7 @@
                 <source src="<?php /*the_field("audio_f") */ ?>">
             </audio>-->
             <!--<div class="entry-meta">
-                <?php /*writter_entry_meta(); */?>
+                <?php /*writter_entry_meta(); */ ?>
             </div>--><!-- .entry-meta -->
         <?php endif; // is_single() ?>
 
@@ -275,7 +306,7 @@
             <?php if (!is_single()) : ?>
                 <?php if (comments_open()) : ?>
                     <!--<div class="comments-link">
-                        <?php /*comments_popup_link('<span class="leave-reply">' . __('Leave a reply', 'writter') . '</span>', __('One reply', 'writter'), __('% replies', 'writter')); */?>
+                        <?php /*comments_popup_link('<span class="leave-reply">' . __('Leave a reply', 'writter') . '</span>', __('One reply', 'writter'), __('% replies', 'writter')); */ ?>
                     </div>--><!-- .comments-link -->
                 <?php endif; // comments_open() ?>
 

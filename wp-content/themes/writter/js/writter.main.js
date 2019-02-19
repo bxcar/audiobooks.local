@@ -31,7 +31,7 @@ function loaded() {
 
         jQuery(document).mouseup(function (e) {
             var container = jQuery("#sidebar-left-mobile");
-            if (container.has(e.target).length === 0){
+            if (container.has(e.target).length === 0) {
                 jQuery('#sidebar-left-mobile').css('z-index', '0').css('display', 'none');
                 jQuery('#main-content').removeClass('moved-right');
                 aMenuClicked = false;
@@ -57,7 +57,7 @@ function loaded() {
 
         jQuery(document).mouseup(function (e) {
             var container = jQuery("#sidebar-left-mobile");
-            if (container.has(e.target).length === 0){
+            if (container.has(e.target).length === 0) {
                 jQuery('#sidebar-left-mobile').css('z-index', '0').css('display', 'none');
                 jQuery('#main-content').removeClass('moved-right');
                 aMenuClicked = false;
@@ -81,6 +81,26 @@ function loaded() {
         });
 
     }
+
+    jQuery('.main-navigation > ul li.menu-item-has-children .menu-li-arrow').bind('click', function (e) {
+        e.preventDefault();
+        if(jQuery(this).parent().parent().hasClass('opened')) {
+            jQuery(this).parent().parent().removeClass('opened');
+            jQuery(this).parent().parent().children("ul.sub-menu").hide(300);
+
+        } else {
+            jQuery(this).parent().parent().addClass('opened');
+            jQuery(this).parent().parent().children("ul.sub-menu").show(300);
+
+        }
+    });
+
+    jQuery('.main-navigation ul li').each(function(i,elem) {
+        if (!jQuery(this).hasClass("menu-item-has-children")) {
+            jQuery(this).find('.menu-li-arrow').css('display', 'none');
+        }
+    });
+
 
 }
 

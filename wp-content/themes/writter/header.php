@@ -31,7 +31,9 @@
     <script src="<?= get_template_directory_uri(); ?>/js/soundmanager2-jsmin.js"></script>
     <script src="<?= get_template_directory_uri(); ?>/js/bar-ui.js"></script>
     <link rel="stylesheet" href="<?= get_template_directory_uri(); ?>/css/bar-ui.css" />
-	<?php wp_head(); ?> 
+    <script src="<?= get_template_directory_uri(); ?>/js/playerjs.js" type="text/javascript"></script>
+	<?php wp_head(); ?>
+
 </head>
 <body <?php body_class(); ?>>
     <section id="page">

@@ -11,6 +11,9 @@
 <header id="header-mobile" role="banner">
 	<section id="sidebar-left-mobile">
         <h3 class="sidebar-title">Navigation</h3>
+        <?php if ( is_active_sidebar( 'main-sidebar' ) ) : ?>
+            <?php dynamic_sidebar( 'main-sidebar' ); ?>
+        <?php endif; ?>
         <nav id="sidebar-navigation-mobile" class="navigation main-navigation" role="navigation">
             <?php wp_nav_menu( array(
                 'container' => 'ul',
@@ -24,9 +27,9 @@
         	<?php get_search_form(); ?>
         <?php endif; ?><!-- searchform init -->
         <div class="mobile-widget-inner">
-            <?php if ( is_active_sidebar( 'main-sidebar' ) ) : ?>
-                    <?php dynamic_sidebar( 'main-sidebar' ); ?>
-            <?php endif; ?>
+            <?php /*if ( is_active_sidebar( 'main-sidebar' ) ) : */?><!--
+                    <?php /*dynamic_sidebar( 'main-sidebar' ); */?>
+            --><?php /*endif; */?>
             <div class="widget">
                 <p>&copy; <?php echo date('Y'); ?>. All rights reserverd.<br />
                 <a href="<?php echo esc_url( __( 'http://wordpress.org/', 'writter' ) ); ?>" title="<?php esc_attr_e( 'Semantic Personal Publishing Platform', 'writter' ); ?>"><?php printf( __( 'Powered by %s', 'writter' ), 'WordPress' ); ?></a></p>

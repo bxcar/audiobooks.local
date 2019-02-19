@@ -125,7 +125,8 @@
     }
 
     .entry-thumbnail img {
-        height: 150px;
+        /*height: 150px;*/
+        height: auto;
     }
 
     .entry-title {
